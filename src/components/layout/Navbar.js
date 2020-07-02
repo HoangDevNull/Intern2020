@@ -1,6 +1,6 @@
 import React from 'react'
-
-function Navbar() {
+import { Link } from 'react-router-dom';
+const Navbar = () => {
     return (
         <header className="nav-head">
             <nav>
@@ -9,14 +9,16 @@ function Navbar() {
                 </div>
                 <div className="nav-right">
                     <ul className="nav-list">
-                        <li>Home</li>
-                        <li>Sign in</li>
-                        <li>Sign up</li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/signin">Sign in</Link></li>
+                        <li><Link to="/signup">Sign up</Link></li>
                     </ul>
                 </div>
             </nav>
         </header>
     )
 }
+
+
 
 export default Navbar;

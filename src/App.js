@@ -1,28 +1,40 @@
 import React from 'react';
-import "./app.scss";
+import './app.less';
+import './styles/index.scss';
+
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Layout } from 'antd';
+
 import Navbar from './components/layout/Navbar';
 import Home from './components/layout/Home';
 
-import { Layout, Row } from 'antd';
-import HeaderContent from './components/HeaderContent';
+import Signin from './components/auth/Signin';
+import Signup from './components/auth/Signup';
 
-const { Header, Footer, Content } = Layout;
+const { Footer } = Layout;
+
+
 
 function App() {
 
   return (
     <>
-      <Navbar />
+      <BrowserRouter>
+        <Navbar />
+        <Layout style={{ background: "var(--second-bg-color)" }}>
+          <div style={{ minHeight: "80vh" }}>
+            <Switch>
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/home/:tag" component={Home} />
+              <Route exact path="/signin" component={Signin} />
+              <Route exact path="/signup" component={Signup} />
+            </Switch>
+          </div>
+          <Footer className="center-f"> <h2>CHECK ME OUT !!!</h2></Footer>
+        </Layout>
+      </BrowserRouter>
 
-      <Layout>
-        <Header className="center-f-c">
-          <HeaderContent />
-        </Header>
-        <Content>
-          <Home />
-        </Content>
-        <Footer>Footer</Footer>
-      </Layout>
     </>
   );
 }
