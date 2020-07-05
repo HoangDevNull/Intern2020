@@ -1,22 +1,19 @@
-import React from 'react';
-import './app.less';
-import './styles/index.scss';
+import React from "react";
+import "./app.less";
+import "./styles/index.scss";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Layout } from 'antd';
+import { Layout } from "antd";
 
-import Navbar from './components/layout/Navbar';
-import Home from './components/layout/Home';
+import Navbar from "./components/layout/Navbar";
+import Home from "./components/layout/Home";
 
-import Signin from './components/auth/Signin';
-import Signup from './components/auth/Signup';
+import Signin from "./components/auth/Signin";
+import Signup from "./components/auth/Signup";
 
 const { Footer } = Layout;
 
-
-
 function App() {
-
   return (
     <>
       <BrowserRouter>
@@ -31,10 +28,11 @@ function App() {
               <Route exact path="/signup" component={Signup} />
             </Switch>
           </div>
-          <Footer className="center-f"> <h2>CHECK ME OUT !!!</h2></Footer>
+          <Footer className="center-f">
+            <h2>CHECK ME OUT !!!</h2>
+          </Footer>
         </Layout>
       </BrowserRouter>
-
     </>
   );
 }

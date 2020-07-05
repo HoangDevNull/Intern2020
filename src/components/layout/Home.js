@@ -108,7 +108,7 @@ function Home() {
           type="flex"
           justify="center"
           gutter={[16, { xs: 12, sm: 16, md: 24, lg: 32 }]}
-          style={{ maxWidth: "1170px", margin: "auto" }}
+          className="container"
         >
           <Col className="gutter-row" xs={24} sm={24} md={18} lg={18} xl={18}>
             <Tabs activeKey={panes.activeKey} onChange={onTabChange}>

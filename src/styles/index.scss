@@ -44,7 +44,10 @@ body {
   color: var(--main-bg-color);
   font-weight: bold;
 }
-
+.container {
+  max-width: 1170px !important;
+  margin: auto !important;
+}
 // ant-custom
 .ant-layout-header {
   background-color: var(--main-bg-color);
@@ -127,4 +130,39 @@ header.nav-head {
 
 .btn-tag {
   cursor: pointer;
+}
+
+@media all and (max-width: 508px) {
+  // main
+  header.nav-head {
+    nav {
+      .nav-brand {
+        span {
+          font-size: 25px !important;
+        }
+      }
+      .nav-right {
+        .nav-list {
+          width: 200px;
+          li {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  // ant-custom
+  .ant-layout-header {
+    background-color: var(--main-bg-color);
+    min-height: 170px;
+    font-size: 17px;
+    .title {
+      font-size: 30px;
+      font-size: bold;
+    }
+    span:nth-child(2) {
+      max-height: 100px;
+      white-space: nowrap;
+    }
+  }
 }
