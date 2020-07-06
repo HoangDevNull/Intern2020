@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import articleReducer from "reducers/article";
-import tagReducer from "reducers/tag";
+import articleReducer from "reducers/articleReducer";
+import tagReducer from "reducers/tagReducer";
 
 const rootReducer = combineReducers({
   article: articleReducer,

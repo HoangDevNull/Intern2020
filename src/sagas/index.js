@@ -1,14 +1,8 @@
-import { TAG } from "constant/action";
-import { put, call, takeEvery, all } from "redux-saga/effects";
+import { all } from "redux-saga/effects";
 
-function* fetchTag() {
-  console.log("do tag fetch");
-}
+import articleSaga from "sagas/articleSaga";
+import tagSaga from "sagas/tagSaga";
 
-function* sagaWatcher() {
-  yield takeEvery({ type: TAG.SUCCESS });
-}
-
-export default function* rootSaga() {
-  yield all([sagaWatcher()]);
+export default function* () {
+  yield all([articleSaga(), tagSaga()]);
 }

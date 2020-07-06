@@ -1,34 +1,38 @@
-import { ARTICLE, TAG } from "constant/action";
+import { ARTICLE, TAG, REMOVE_ARTICLE } from "constant/action";
 
 /**
  * Generate an action with type payload after fetch data
  * @param {*} type
  * @param {*} payload
+ * return type and payload if exist
  */
 const action = (type, payload = {}) => {
   return { type, ...payload };
 };
 
 export const article = {
-  pending: (page, offset, tag) => {
-    return action(ARTICLE.PENDING, { page, offset, tag });
+  loadArticle: (page, offset, tag) => {
+    return action(ARTICLE.LOAD, { page, offset, tag });
   },
-  sucess: (articles) => {
+  setArticle: (articles) => {
     return action(ARTICLE.SUCCESS, articles);
   },
-  error: (error) => {
+  setError: (error) => {
     return action(ARTICLE.ERROR, error);
+  },
+  removeArticle: (tag) => {
+    return { type: REMOVE_ARTICLE.SUCCESS, tag };
   },
 };
 
 export const tag = {
-  pending: () => {
-    return action(TAG.PENDING);
+  loadTag: () => {
+    return action(TAG.LOAD);
   },
-  sucess: (tagList) => {
-    return action(TAG.SUCCESS, tagList);
+  setTag: (tags) => {
+    return action(TAG.SUCCESS, tags);
   },
-  error: (error) => {
+  setError: (error) => {
     return action(TAG.ERROR, error);
   },
 };
