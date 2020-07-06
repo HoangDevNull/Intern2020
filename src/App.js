@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 
 import Navbar from "./components/layout/Navbar";
-import Home from "./components/layout/Home";
+import Home from "./components/Home";
 
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";

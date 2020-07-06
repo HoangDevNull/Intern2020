@@ -1,6 +1,6 @@
 import React from "react";
 
-import { List, Avatar, Space, Badge, Pagination } from "antd";
+import { List, Avatar, Space, Badge, Pagination, Tag } from "antd";
 import { HeartFilled } from "@ant-design/icons";
 function ArticleList({ articles, onPageChange, page, tag }) {
   return (
@@ -16,11 +16,22 @@ function ArticleList({ articles, onPageChange, page, tag }) {
               <Space>
                 <span className="font-sm">Read more ...</span>
               </Space>,
+              <div className="tag-wrapper">
+                {item.tagList.length > 0
+                  ? item.tagList.map((tag) => {
+                      return (
+                        <Tag key={tag}>
+                          <div className="btn-tag">{tag}</div>
+                        </Tag>
+                      );
+                    })
+                  : ""}
+              </div>,
             ]}
             extra={
               <Badge
                 style={{ backgroundColor: "var(--main-bg-color)" }}
-                count={5}>
+                count={item.favoritesCount }>
                 <div className="heart-emotion">
                   <HeartFilled />
                 </div>

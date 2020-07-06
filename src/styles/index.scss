@@ -66,6 +66,11 @@ body {
   background-color: var(--second-bg-color);
 }
 
+.ant-list-item-action {
+  display: flex;
+  justify-content: space-between !important;
+}
+
 .heart-emotion {
   width: 35px;
   height: 35px;
@@ -122,6 +127,11 @@ header.nav-head {
   }
 }
 
+.tag-wrapper {
+  position: relative;
+  left: 100px;
+}
+
 .paginate-wrapper {
   display: flex;
   justify-content: flex-end;
@@ -163,6 +173,20 @@ header.nav-head {
     span:nth-child(2) {
       max-height: 100px;
       white-space: nowrap;
+    }
+  }
+  .ant-list-vertical .ant-list-item-extra {
+    margin: 0 !important;
+  }
+  .tag-wrapper {
+    position: relative;
+    left: 50px;
+    span {
+      @for $i from 4 through 6 {
+        &:nth-child(#{$i}) {
+          display: none;
+        }
+      }
     }
   }
 }

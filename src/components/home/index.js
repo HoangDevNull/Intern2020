@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
 
-import TagList from "../home/TagList";
-import ArticleList from "../home/ArticleList";
-import HeaderContent from "../HeaderContent";
-
+import ArticleList from "./ArticleList";
+import PopularTag from "./PopularTag";
+import HeaderContent from "components/HeaderContent";
 import { Row, Col, Tabs, Layout } from "antd";
 
 // services
 import axios from "axios";
-import { tagUrl, articleUrl } from "../../constant/api";
+import { tagUrl, articleUrl } from "constant/api";
 
 const { Header, Content } = Layout;
 const { TabPane } = Tabs;
 
 function Home() {
+  // saga tags
   const [tags, setTags] = useState([]);
+  // saga PANEs
   const [panes, setPanes] = useState({ activeKey: "Global feed", data: [] });
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     async function getPost() {
       try {
         const { data } = await axios.get(articleUrl(10, 0, ""));
+        console.log("article", data);
         const initPanes = {
           activeKey: "Global feed",
           data: [
@@ -51,7 +53,11 @@ function Home() {
   const onPageChange = async (page, tag) => {
     setPage(page);
     try {
-      let url = articleUrl(10, page, tag.includes("Global feed") ? "" : tag);
+      let url = articleUrl(
+        10,
+        page - 1,
+        tag.includes("Global feed") ? "" : tag,
+      );
       const { data } = await axios.get(url);
       // Make a shallow copy of the panes
       let panesClone = { ...panes };
@@ -68,7 +74,7 @@ function Home() {
   };
   const renderPost = async (tag) => {
     //reset page
-    setPage(0);
+    setPage(1);
     // fetch article data with tag name;
     try {
       const { data } = await axios.get(articleUrl(10, 0, tag));
@@ -90,7 +96,7 @@ function Home() {
       let panesClone = { ...panes };
 
       panesClone.data = panesClone.data.filter((value) =>
-        value.tag.includes("Global feed")
+        value.tag.includes("Global feed"),
       );
       panesClone.activeKey = "Global feed";
 
@@ -108,8 +114,7 @@ function Home() {
           type="flex"
           justify="center"
           gutter={[16, { xs: 12, sm: 16, md: 24, lg: 32 }]}
-          className="container"
-        >
+          className="container">
           <Col className="gutter-row" xs={24} sm={24} md={18} lg={18} xl={18}>
             <Tabs activeKey={panes.activeKey} onChange={onTabChange}>
               {panes.data.length &&
@@ -130,7 +135,7 @@ function Home() {
             </Tabs>
           </Col>
           <Col className="gutter-row" xs={24} sm={24} md={6} lg={6} xl={6}>
-            <TagList tags={tags} renderPost={renderPost} />
+            <PopularTag tags={tags} renderPost={renderPost} />
           </Col>
         </Row>
       </Content>
