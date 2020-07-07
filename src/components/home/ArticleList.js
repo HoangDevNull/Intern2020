@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { List, Avatar, Space, Badge, Pagination, Tag } from "antd";
 import { HeartFilled } from "@ant-design/icons";
-function ArticleList({ articles, onPageChange, page, tag }) {
+
+function ArticleList({ data, onPageChange, page, tag }) {
+  // console.log("articleList Rerender");
+  const style = useMemo(() => {
+    return { backgroundColor: "var(--main-bg-color)" };
+  }, []);
+
+  if (!data.articles) {
+    return <h1> No article exist !!!</h1>;
+  }
   return (
     <>
       <List
         itemLayout="vertical"
         size="large"
-        dataSource={articles.articles}
+        dataSource={data.articles}
         renderItem={(item) => (
           <List.Item
             key={item.createdAt}
@@ -29,9 +38,7 @@ function ArticleList({ articles, onPageChange, page, tag }) {
               </div>,
             ]}
             extra={
-              <Badge
-                style={{ backgroundColor: "var(--main-bg-color)" }}
-                count={item.favoritesCount }>
+              <Badge style={style} count={item.favoritesCount}>
                 <div className="heart-emotion">
                   <HeartFilled />
                 </div>
@@ -60,7 +67,7 @@ function ArticleList({ articles, onPageChange, page, tag }) {
           onChange={(page) => {
             onPageChange(page, tag);
           }}
-          total={articles.articlesCount}
+          total={data.articlesCount}
         />
       </div>
     </>

@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { Card, Tag } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 
-function PopularTag({ tags, renderPost }) {
+import { tag as tagAction, article as articleAction } from "actions";
+
+function PopularTag() {
+  // style
+  const style = useMemo(() => {
+    return {
+      background: "#F3F3F3",
+    };
+  }, []);
+
+  // redux hook
+  const dispatch = useDispatch();
+  const tags = useSelector((state) => state.tag.tagList);
+
+  useEffect(() => {
+    dispatch(tagAction.loadTag());
+  }, [dispatch]);
+
+  // change Post when tag changes
+  const renderPost = async (tag) => {
+    dispatch(articleAction.loadArticle(0, 10, tag));
+  };
+
   return (
-    <Card
-      title="Popular tag"
-      bordered={false}
-      style={{ background: "#F3F3F3" }}>
+    <Card title="Popular tag" bordered={false} style={style}>
       {tags.length > 0
         ? tags.map((tag) => {
             return (
@@ -21,7 +41,7 @@ function PopularTag({ tags, renderPost }) {
               </Tag>
             );
           })
-        : "No result found"}
+        : "No popular tag exist !!!"}
     </Card>
   );
 }
