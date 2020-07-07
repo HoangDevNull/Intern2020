@@ -1,4 +1,11 @@
-import { ARTICLE, TAG, REMOVE_ARTICLE } from "constant/action";
+import {
+  ARTICLE,
+  TAG,
+  REMOVE_ARTICLE,
+  LOGIN,
+  LOGOUT,
+  REGISTER,
+} from "constant/action";
 
 /**
  * Generate an action with type payload after fetch data
@@ -24,7 +31,6 @@ export const article = {
     return { type: REMOVE_ARTICLE.SUCCESS, tag };
   },
 };
-
 export const tag = {
   loadTag: () => {
     return action(TAG.LOAD);
@@ -34,5 +40,34 @@ export const tag = {
   },
   setError: (error) => {
     return action(TAG.ERROR, error);
+  },
+};
+export const login = {
+  loadLogin: (credential) => {
+    return action(LOGIN.LOAD, credential);
+  },
+  setLogin: (username) => {
+    return action(LOGIN.SUCCESS, username);
+  },
+  setError: (errors) => {
+    return action(LOGIN.ERROR, errors);
+  },
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT,
+  };
+};
+
+export const register = {
+  loadRegister: (credential) => {
+    return action(REGISTER.LOAD, credential);
+  },
+  setRegister: () => {
+    return action(REGISTER.SUCCESS);
+  },
+  setError: (errors) => {
+    return action(REGISTER.ERROR, errors);
   },
 };

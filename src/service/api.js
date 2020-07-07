@@ -1,5 +1,5 @@
 import axios from "axios";
-import { tagUrl, articleUrl } from "constant/api";
+import { tagUrl, articleUrl, loginUrl, registerUrl } from "constant/api";
 
 const fetchAricle = async (page, offset = 10, tag) => {
   const { data, status } = await axios.get(articleUrl(offset, page, tag));
@@ -19,4 +19,30 @@ const fetchTag = async () => {
   return data;
 };
 
-export { fetchAricle, fetchTag };
+const login = async (email, password) => {
+  const { data, status } = await axios.post(loginUrl(), {
+    user: {
+      email,
+      password,
+    },
+  });
+  if (status >= 400) {
+    throw new Error(data.errors);
+  }
+  return data;
+};
+const register = async (username, email, password) => {
+  const { data, status } = await axios.post(registerUrl(), {
+    user: {
+      username,
+      email,
+      password,
+    },
+  });
+  if (status >= 400) {
+    throw new Error(data.errors);
+  }
+  return data;
+};
+
+export { fetchAricle, fetchTag, login, register };
