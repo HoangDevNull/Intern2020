@@ -5,6 +5,7 @@ import {
   LOGIN,
   LOGOUT,
   REGISTER,
+  POST,
 } from "constant/action";
 
 /**
@@ -69,5 +70,17 @@ export const register = {
   },
   setError: (errors) => {
     return action(REGISTER.ERROR, errors);
+  },
+};
+
+export const post = {
+  loadpost: (post) => {
+    return action(POST.LOAD, { slug: post });
+  },
+  setPost: (data) => {
+    return action(POST.SUCCESS, { payload: data });
+  },
+  setError: (errors) => {
+    return action(POST.ERROR, errors);
   },
 };

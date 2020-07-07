@@ -7,6 +7,7 @@ import { Layout } from "antd";
 
 import Navbar from "./components/layout/Navbar";
 import Home from "./components/Home";
+import Post from "./components/Post";
 
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";
@@ -24,6 +25,7 @@ function App() {
               <Route exact path="/home" component={Home} />
               <Route exact path="/" component={Home} />
               <Route exact path="/home/:tag" component={Home} />
+              <Route exact path="/article/:slug" component={Post} />
               <Route exact path="/signin" component={Signin} />
               <Route exact path="/signup" component={Signup} />
             </Switch>

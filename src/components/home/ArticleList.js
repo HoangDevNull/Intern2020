@@ -2,9 +2,12 @@ import React, { useMemo } from "react";
 
 import { List, Avatar, Space, Badge, Pagination, Tag } from "antd";
 import { HeartFilled } from "@ant-design/icons";
+import moment from "moment";
+
+import { Link } from "react-router-dom";
 
 function ArticleList({ data, onPageChange, page, tag }) {
-  // console.log("articleList Rerender");
+  console.log(data);
   const style = useMemo(() => {
     return { backgroundColor: "var(--main-bg-color)" };
   }, []);
@@ -23,7 +26,9 @@ function ArticleList({ data, onPageChange, page, tag }) {
             key={item.createdAt}
             actions={[
               <Space>
-                <span className="font-sm">Read more ...</span>
+                <Link to={`/article/${item.slug}`} className="font-sm">
+                  Read more ...
+                </Link>
               </Space>,
               <div className="tag-wrapper">
                 {item.tagList.length > 0
@@ -51,7 +56,7 @@ function ArticleList({ data, onPageChange, page, tag }) {
                   {item.author.username}
                 </a>
               }
-              description={item.createdAt}
+              description={moment(item.createdAt).format("LLL")}
             />
             <div className="title-font">{item.title}</div>
             <div className="md-font">{item.description}</div>

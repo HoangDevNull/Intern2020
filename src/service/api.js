@@ -1,5 +1,11 @@
 import axios from "axios";
-import { tagUrl, articleUrl, loginUrl, registerUrl } from "constant/api";
+import {
+  tagUrl,
+  articleUrl,
+  loginUrl,
+  registerUrl,
+  postUrl,
+} from "constant/api";
 
 const fetchAricle = async (page, offset = 10, tag) => {
   const { data, status } = await axios.get(articleUrl(offset, page, tag));
@@ -7,7 +13,14 @@ const fetchAricle = async (page, offset = 10, tag) => {
   if (status >= 400) {
     throw new Error(data.errors);
   }
-  // first param to fetch
+  return data;
+};
+const fetchPost = async (slug) => {
+  const { data, status } = await axios.get(postUrl(slug));
+  // call fail -> throw new error to dispatch from article saga
+  if (status >= 400) {
+    throw new Error(data.errors);
+  }
   return data;
 };
 
@@ -45,4 +58,4 @@ const register = async (username, email, password) => {
   return data;
 };
 
-export { fetchAricle, fetchTag, login, register };
+export { fetchAricle, fetchTag, login, register, fetchPost };

@@ -13,3 +13,6 @@ export const loginUrl = () => {
 export const registerUrl = () => {
   return `${BASE_URL}/users`;
 };
+export const postUrl = (slug) => {
+  return `${BASE_URL}/articles/${slug}`;
+};
