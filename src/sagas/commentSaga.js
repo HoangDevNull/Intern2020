@@ -1,12 +1,13 @@
 import { takeLatest, put, call, select } from "redux-saga/effects";
-import { COMMENT, ADD_COMMENT } from "constant/action";
+import { COMMENT, ADD_COMMENT, DROP_COMMENT } from "constant/action";
 import { comment as commentAction } from "actions";
 
-import { fetchComment, addComment } from "service/api";
+import { fetchComment, addComment, deleteComment } from "service/api";
 
 function* handleComment({ slug }) {
   try {
     const { comments } = yield call(fetchComment, slug);
+    console.log(comments);
     let data =
       comments.length > 0
         ? comments.map((cmt) => {
@@ -35,6 +36,8 @@ function* handleAddComment({ slug, content }) {
   try {
     const { comment } = yield call(addComment, slug, content);
     const preData = [...(yield select(getPreData))];
+
+    console.log(comment);
     let newComment = {
       id: comment.id,
       author: {
@@ -56,7 +59,28 @@ function* handleAddComment({ slug, content }) {
   }
 }
 
+// delete comment worker
+function* handleDropComment({ slug, commentId }) {
+  try {
+    yield call(deleteComment, slug, commentId);
+
+    const preData = [...(yield select(getPreData))];
+
+    let comments = preData.filter((cmt) => cmt.id !== commentId);
+
+    yield put(commentAction.setAddComment(comments));
+  } catch (err) {
+    if (err.message) {
+      yield put(commentAction.setAddError({ errors: err.message }));
+      return;
+    }
+    const { errors } = err.response.data;
+    yield put(commentAction.setAddError({ errors }));
+  }
+}
+
 export default function* commentWatcher() {
   yield takeLatest(COMMENT.LOAD, handleComment);
   yield takeLatest(ADD_COMMENT.LOAD, handleAddComment);
+  yield takeLatest(DROP_COMMENT.LOAD, handleDropComment);
 }

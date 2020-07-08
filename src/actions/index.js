@@ -8,6 +8,7 @@ import {
   POST,
   COMMENT,
   ADD_COMMENT,
+  DROP_COMMENT,
 } from "constant/action";
 
 /**
@@ -104,5 +105,14 @@ export const comment = {
   },
   setAddError: (errors) => {
     return action(ADD_COMMENT.ERROR, errors);
+  },
+  loadDropComment: (slug, commentId) => {
+    return action(DROP_COMMENT.LOAD, { slug, commentId });
+  },
+  setDropComment: (data) => {
+    return action(DROP_COMMENT.SUCCESS, { payload: data });
+  },
+  setDropError: (errors) => {
+    return action(DROP_COMMENT.ERROR, errors);
   },
 };

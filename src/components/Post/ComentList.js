@@ -6,13 +6,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { comment as commentAction } from "actions";
 
 function ComentList({ slug }) {
+  const username = useSelector((state) => state.login.username);
   const data = useSelector((state) => state.comment.data);
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (slug) {
       dispatch(commentAction.loadComment(slug));
     }
   }, [dispatch, slug]);
+
+  const dropComment = (commentId) => {
+    if (slug) {
+      dispatch(commentAction.loadDropComment(slug, commentId));
+    }
+  };
+
   return (
     <Row justify="center">
       <Col span={24}>
@@ -29,9 +38,12 @@ function ComentList({ slug }) {
           renderItem={(item) => (
             <li>
               <CommentDetail
+                commentId={item.id}
                 author={item.author}
                 content={item.content}
                 dateUpdate={item.dateUpdate}
+                canDelete={username === item.author.username}
+                dropComment={dropComment}
               />
             </li>
           )}

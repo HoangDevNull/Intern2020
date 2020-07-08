@@ -9,6 +9,7 @@ import {
   postUrl,
   getCommentUrl,
   addCommentUrl,
+  deleteCommentUrl,
 } from "constant/api";
 
 let localStorageService = LocalStorageService.getService();
@@ -60,6 +61,35 @@ const addComment = async (slug, comment) => {
   }
   return data;
 };
+
+/**
+ * Delete comment by commentId and only user post it can delete it
+ * @param {*} slug
+ * @param {*} commentId
+ */
+const deleteComment = async (slug, commentId) => {
+  const token = localStorageService.getAccessToken();
+  if (!token) {
+    console.log("throw new here");
+    throw new Error("401 unauthorized");
+  }
+  const { data, status } = await axios.delete(
+    deleteCommentUrl(slug, commentId),
+    {
+      headers: { Authorization: `Token ${token}` },
+    },
+  );
+  if (status >= 400) {
+    throw new Error(data.errors);
+  }
+  return data;
+};
+
+/**
+ * Do login with email and password
+ * @param {} email
+ * @param {*} password
+ */
 const login = async (email, password) => {
   const { data, status } = await axios.post(loginUrl(), {
     user: {
@@ -72,6 +102,13 @@ const login = async (email, password) => {
   }
   return data;
 };
+
+/**
+ * Do register with 3 param below
+ * @param {*} username
+ * @param {*} email
+ * @param {*} password
+ */
 const register = async (username, email, password) => {
   const { data, status } = await axios.post(registerUrl(), {
     user: {
@@ -94,4 +131,5 @@ export {
   fetchPost,
   fetchComment,
   addComment,
+  deleteComment,
 };

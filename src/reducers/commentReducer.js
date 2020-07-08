@@ -1,4 +1,4 @@
-import { COMMENT, ADD_COMMENT } from "constant/action";
+import { COMMENT, ADD_COMMENT, DROP_COMMENT } from "constant/action";
 
 const initState = {
   isLoading: false,
@@ -34,6 +34,15 @@ const commentReducer = (state = initState, action) => {
       return { ...state, data: action.payload, isLoading: false, error: null };
     }
     case ADD_COMMENT.ERROR: {
+      return { ...state, isLoading: false, error: action.errors };
+    }
+    case DROP_COMMENT.LOAD: {
+      return { ...state, isLoading: true, error: null };
+    }
+    case DROP_COMMENT.SUCCESS: {
+      return { ...state, data: action.payload, isLoading: false, error: null };
+    }
+    case DROP_COMMENT.ERROR: {
       return { ...state, isLoading: false, error: action.errors };
     }
     default:
