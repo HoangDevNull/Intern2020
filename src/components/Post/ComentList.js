@@ -1,39 +1,44 @@
-import React from "react";
-import { List } from "antd";
+import React, { useEffect, memo } from "react";
+import { List, Row, Col, Divider } from "antd";
 import CommentDetail from "./CommentDetail";
 
-function ComentList() {
-  const data = [
-    {
-      author: {
-        username: "Hoang pham",
-        image:
-          "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-      },
-      content:
-        "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create      their product prototypes beautifully and efficiently.",
-      dateUpdate: new Date().now,
-    },
-  ];
+import { useSelector, useDispatch } from "react-redux";
+import { comment as commentAction } from "actions";
 
+function ComentList({ slug }) {
+  const data = useSelector((state) => state.comment.data);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (slug) {
+      dispatch(commentAction.loadComment(slug));
+    }
+  }, [dispatch, slug]);
   return (
-    <List
-      className="comment-list"
-      header={`${data.length} replies`}
-      itemLayout="horizontal"
-      dataSource={data}
-      renderItem={(item) => (
-        <li>
-          <CommentDetail
-            author={item.author}
-            authorAvatar={item.authorAvatar}
-            content={item.content}
-            dateUpdate={item.dateUpdate}
-          />
-        </li>
-      )}
-    />
+    <Row justify="center">
+      <Col span={24}>
+        <Divider orientation="center" plain>
+          COMMENT
+        </Divider>
+      </Col>
+      <Col xs={24} sm={24} md={18} lg={16} xl={16} xxl={10}>
+        <List
+          className="comment-list"
+          header={`${data && data.length} replies`}
+          itemLayout="horizontal"
+          dataSource={data}
+          renderItem={(item) => (
+            <li>
+              <CommentDetail
+                author={item.author}
+                content={item.content}
+                dateUpdate={item.dateUpdate}
+              />
+            </li>
+          )}
+        />
+      </Col>
+    </Row>
   );
 }
 
-export default ComentList;
+export default memo(ComentList);

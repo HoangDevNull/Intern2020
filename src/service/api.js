@@ -1,11 +1,17 @@
 import axios from "axios";
+import LocalStorageService from "./localStorageService";
+
 import {
   tagUrl,
   articleUrl,
   loginUrl,
   registerUrl,
   postUrl,
+  getCommentUrl,
+  addCommentUrl,
 } from "constant/api";
+
+let localStorageService = LocalStorageService.getService();
 
 const fetchAricle = async (page, offset = 10, tag) => {
   const { data, status } = await axios.get(articleUrl(offset, page, tag));
@@ -31,7 +37,29 @@ const fetchTag = async () => {
   }
   return data;
 };
-
+const fetchComment = async (slug) => {
+  const { data, status } = await axios.get(getCommentUrl(slug));
+  if (status >= 400) {
+    throw new Error(data.errors);
+  }
+  return data;
+};
+const addComment = async (slug, comment) => {
+  const token = localStorageService.getAccessToken();
+  if (!token) {
+    console.log("throw new here");
+    throw new Error("401 unauthorized");
+  }
+  const { data, status } = await axios.post(
+    addCommentUrl(slug),
+    { body: comment },
+    { headers: { Authorization: `Token ${token}` } },
+  );
+  if (status >= 400) {
+    throw new Error(data.errors);
+  }
+  return data;
+};
 const login = async (email, password) => {
   const { data, status } = await axios.post(loginUrl(), {
     user: {
@@ -58,4 +86,12 @@ const register = async (username, email, password) => {
   return data;
 };
 
-export { fetchAricle, fetchTag, login, register, fetchPost };
+export {
+  fetchAricle,
+  fetchTag,
+  login,
+  register,
+  fetchPost,
+  fetchComment,
+  addComment,
+};

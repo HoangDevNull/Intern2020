@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, memo } from "react";
 
 import { List, Avatar, Space, Badge, Pagination, Tag } from "antd";
 import { HeartFilled } from "@ant-design/icons";
@@ -7,7 +7,6 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 function ArticleList({ data, onPageChange, page, tag }) {
-  console.log(data);
   const style = useMemo(() => {
     return { backgroundColor: "var(--main-bg-color)" };
   }, []);
@@ -26,7 +25,7 @@ function ArticleList({ data, onPageChange, page, tag }) {
             key={item.createdAt}
             actions={[
               <Space>
-                <Link to={`/article/${item.slug}`} className="font-sm">
+                <Link to={`/article/${item.slug}`} className="font-sm no-break">
                   Read more ...
                 </Link>
               </Space>,
@@ -79,4 +78,9 @@ function ArticleList({ data, onPageChange, page, tag }) {
   );
 }
 
-export default ArticleList;
+export default memo(ArticleList, (preProps, curProps) => {
+  if (preProps.data !== curProps.data) {
+    return false;
+  }
+  return true;
+});

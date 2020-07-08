@@ -5,7 +5,6 @@ import { post as postAction } from "actions";
 import { fetchPost } from "service/api";
 function* handlePost({ slug }) {
   try {
-    console.log("do fetch post with  slug" + slug);
     const response = yield call(fetchPost, slug);
     const { article } = response;
     let data = {

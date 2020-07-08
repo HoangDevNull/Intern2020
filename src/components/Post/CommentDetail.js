@@ -17,7 +17,7 @@ function CommentDetail({ author, content, dateUpdate }) {
           </Button>
         </span>,
       ]}
-      author={<a>{author.username}</a>}
+      author={<a href="/">{author.username}</a>}
       avatar={<Avatar src={author.image} alt={author} />}
       content={<p>{content}</p>}
       datetime={<span>{moment(dateUpdate).format("LLL")}</span>}

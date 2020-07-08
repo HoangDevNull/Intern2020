@@ -15,7 +15,6 @@ const registerReducer = (state = initState, action) => {
       return { ...state, isLoading: false, isRegisSuccess: true, error: null };
     }
     case REGISTER.ERROR: {
-      console.log("Action from reducer", action);
       return {
         ...state,
         isLoading: false,

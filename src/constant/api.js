@@ -16,3 +16,13 @@ export const registerUrl = () => {
 export const postUrl = (slug) => {
   return `${BASE_URL}/articles/${slug}`;
 };
+
+export const getCommentUrl = (slug) => {
+  return `${BASE_URL}/articles/${slug}/comments`;
+};
+export const addCommentUrl = (slug) => {
+  return `${BASE_URL}/articles/${slug}/comments`;
+};
+export const deleteCommentUrl = (slug, commentId) => {
+  return `${BASE_URL}/articles/${slug}/comments/${commentId}`;
+};

@@ -17,7 +17,6 @@ const loginReducer = (state = initState, action) => {
       return { ...state, isLoading: true, error: null };
     }
     case LOGIN.SUCCESS: {
-      console.log(action);
       return {
         ...state,
         isLoading: false,

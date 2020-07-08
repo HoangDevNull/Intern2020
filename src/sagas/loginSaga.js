@@ -10,7 +10,6 @@ function* handleLogin(credential) {
   try {
     const { email, password } = credential;
     const data = yield call(login, email, password);
-    console.log(data.user);
     const { username, token } = data.user;
     // set token
     localStorageService.setAccessToken(token);

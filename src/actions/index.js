@@ -6,6 +6,8 @@ import {
   LOGOUT,
   REGISTER,
   POST,
+  COMMENT,
+  ADD_COMMENT,
 } from "constant/action";
 
 /**
@@ -74,7 +76,7 @@ export const register = {
 };
 
 export const post = {
-  loadpost: (post) => {
+  loadPost: (post) => {
     return action(POST.LOAD, { slug: post });
   },
   setPost: (data) => {
@@ -82,5 +84,25 @@ export const post = {
   },
   setError: (errors) => {
     return action(POST.ERROR, errors);
+  },
+};
+export const comment = {
+  loadComment: (slug) => {
+    return action(COMMENT.LOAD, { slug });
+  },
+  setComment: (data) => {
+    return action(COMMENT.SUCCESS, { payload: data });
+  },
+  setError: (errors) => {
+    return action(COMMENT.ERROR, errors);
+  },
+  loadAddComment: (slug, content) => {
+    return action(ADD_COMMENT.LOAD, { slug, content });
+  },
+  setAddComment: (data) => {
+    return action(ADD_COMMENT.SUCCESS, { payload: data });
+  },
+  setAddError: (errors) => {
+    return action(ADD_COMMENT.ERROR, errors);
   },
 };

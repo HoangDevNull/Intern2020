@@ -20,5 +20,7 @@ export const TAG = createActionType("TAG");
 export const LOGIN = createActionType("LOGIN");
 export const REGISTER = createActionType("REGISTER");
 export const POST = createActionType("POST");
+export const COMMENT = createActionType("COMMENT");
+export const ADD_COMMENT = createActionType("ADD_COMMENT");
 
 export const LOGOUT = "LOGOUT";
