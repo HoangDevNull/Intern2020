@@ -9,6 +9,7 @@ import {
   COMMENT,
   ADD_COMMENT,
   DROP_COMMENT,
+  USER,
 } from "constant/action";
 
 /**
@@ -50,11 +51,22 @@ export const login = {
   loadLogin: (credential) => {
     return action(LOGIN.LOAD, credential);
   },
-  setLogin: (username) => {
-    return action(LOGIN.SUCCESS, username);
+  setLogin: (username, image) => {
+    return action(LOGIN.SUCCESS, { username, image });
   },
   setError: (errors) => {
     return action(LOGIN.ERROR, errors);
+  },
+};
+export const user = {
+  loadUser: () => {
+    return action(USER.LOAD);
+  },
+  setUser: (username, image) => {
+    return action(USER.SUCCESS, { username, image });
+  },
+  setError: (errors) => {
+    return action(USER.ERROR, errors);
   },
 };
 

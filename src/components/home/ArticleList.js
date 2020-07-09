@@ -57,7 +57,7 @@ function ArticleList({ data, onPageChange, page, tag }) {
               }
               description={moment(item.createdAt).format("LLL")}
             />
-            <div className="title-font">{item.title}</div>
+            <div className="title-font no-break">{item.title}</div>
             <div className="md-font">{item.description}</div>
           </List.Item>
         )}

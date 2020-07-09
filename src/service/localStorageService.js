@@ -13,12 +13,6 @@ const LocalStorageService = (function () {
   function _getAccessToken() {
     return localStorage.getItem("accessToken");
   }
-  function _setUsername(username) {
-    localStorage.setItem("username", username);
-  }
-  function _getUsername() {
-    return localStorage.getItem("username");
-  }
 
   function _clearTokenSerivce() {
     localStorage.removeItem("accessToken");
@@ -29,8 +23,6 @@ const LocalStorageService = (function () {
     getService: _getService,
     setAccessToken: _setAccessToken,
     getAccessToken: _getAccessToken,
-    setUsername: _setUsername,
-    getUsername: _getUsername,
     cleanService: _clearTokenSerivce,
   };
 })();

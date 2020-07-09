@@ -1,14 +1,13 @@
-import { LOGIN, LOGOUT } from "constant/action";
+import { LOGIN, LOGOUT, USER } from "constant/action";
 import LocalStorageService from "service/localStorageService";
 const localStorageService = LocalStorageService.getService();
 
 const initState = {
   isLoading: false,
-  isLogin:
-    !!localStorageService.getUsername() &&
-    !!localStorageService.getAccessToken(),
+  isLogin: !!localStorageService.getAccessToken(),
   error: null,
-  username: localStorageService.getUsername() || null,
+  username: null,
+  image: null,
 };
 
 const loginReducer = (state = initState, action) => {
@@ -17,12 +16,14 @@ const loginReducer = (state = initState, action) => {
       return { ...state, isLoading: true, error: null };
     }
     case LOGIN.SUCCESS: {
+      console.log(action);
       return {
         ...state,
         isLoading: false,
         isLogin: true,
         error: null,
         username: action.username,
+        image: action.image,
       };
     }
     case LOGIN.ERROR: {
@@ -40,6 +41,28 @@ const loginReducer = (state = initState, action) => {
         isLoading: false,
         isLogin: false,
         error: null,
+        username: null,
+      };
+    }
+    case USER.LOAD: {
+      return { ...state, isLoading: true, error: null };
+    }
+    case USER.SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isLogin: true,
+        error: null,
+        username: action.username,
+        image: action.image,
+      };
+    }
+    case USER.ERROR: {
+      return {
+        ...state,
+        isLoading: false,
+        isLogin: false,
+        error: action.errors,
         username: null,
       };
     }

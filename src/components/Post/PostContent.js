@@ -18,7 +18,7 @@ function PostContent({ slug }) {
     <>
       <div className="post-bg">
         <div className="container post-profile ">
-          <span className="title">{data.title}</span>
+          <span className="title no-break">{data.title}</span>
           <div className="profile">
             <Avatar size="large" src={data.author.image} />
             <div className="profile-content">

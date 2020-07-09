@@ -23,5 +23,6 @@ export const POST = createActionType("POST");
 export const COMMENT = createActionType("COMMENT");
 export const ADD_COMMENT = createActionType("ADD_COMMENT");
 export const DROP_COMMENT = createActionType("DROP_COMMENT");
+export const USER = createActionType("USER");
 
 export const LOGOUT = "LOGOUT";

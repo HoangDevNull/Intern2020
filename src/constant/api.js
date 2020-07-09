@@ -6,6 +6,9 @@ export const tagUrl = () => {
 export const articleUrl = (limit, offset, tag) => {
   return `${BASE_URL}/articles?limit=${limit}&offset=${offset}&tag=${tag}`;
 };
+export const getUserUrl = () => {
+  return `${BASE_URL}/user`;
+};
 
 export const loginUrl = () => {
   return `${BASE_URL}/users/login`;

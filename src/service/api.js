@@ -10,6 +10,7 @@ import {
   getCommentUrl,
   addCommentUrl,
   deleteCommentUrl,
+  getUserUrl,
 } from "constant/api";
 
 let localStorageService = LocalStorageService.getService();
@@ -122,6 +123,20 @@ const register = async (username, email, password) => {
   }
   return data;
 };
+const fetchUser = async () => {
+  const token = localStorageService.getAccessToken();
+  if (!token) {
+    console.log("throw new here");
+    throw new Error("401 unauthorized");
+  }
+  const { data, status } = await axios.get(getUserUrl(), {
+    headers: { Authorization: `Token ${token}` },
+  });
+  if (status >= 400) {
+    throw new Error(data.errors);
+  }
+  return data;
+};
 
 export {
   fetchAricle,
@@ -132,4 +147,5 @@ export {
   fetchComment,
   addComment,
   deleteComment,
+  fetchUser,
 };
