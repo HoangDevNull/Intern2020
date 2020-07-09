@@ -15,6 +15,12 @@ import {
 
 let localStorageService = LocalStorageService.getService();
 
+/**
+ * Fetch article with 3 param init
+ * @param {*} page
+ * @param {*} offset
+ * @param {*} tag
+ */
 const fetchAricle = async (page, offset = 10, tag) => {
   const { data, status } = await axios.get(articleUrl(offset, page, tag));
   // call fail -> throw new error to dispatch from article saga
@@ -23,6 +29,11 @@ const fetchAricle = async (page, offset = 10, tag) => {
   }
   return data;
 };
+
+/**
+ * Fetch post with post slug
+ * @param {*} slug
+ */
 const fetchPost = async (slug) => {
   const { data, status } = await axios.get(postUrl(slug));
   // call fail -> throw new error to dispatch from article saga
@@ -31,7 +42,9 @@ const fetchPost = async (slug) => {
   }
   return data;
 };
-
+/**
+ * Fetch all tag from api
+ */
 const fetchTag = async () => {
   const { data, status } = await axios.get(tagUrl());
   if (status >= 400) {
@@ -123,6 +136,10 @@ const register = async (username, email, password) => {
   }
   return data;
 };
+
+/**
+ * Get current user with access token
+ */
 const fetchUser = async () => {
   const token = localStorageService.getAccessToken();
   if (!token) {
