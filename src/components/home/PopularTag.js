@@ -8,7 +8,8 @@ function PopularTag() {
   // style
   const style = useMemo(() => {
     return {
-      background: "#F3F3F3",
+      card: { background: "#F3F3F3" },
+      tag: { borderRadius: "10rem" },
     };
   }, []);
 
@@ -26,11 +27,11 @@ function PopularTag() {
   };
 
   return (
-    <Card title="Popular tag" bordered={false} style={style}>
+    <Card title="Popular tag" bordered={false} style={style.card}>
       {tags.length > 0
         ? tags.map((tag) => {
             return (
-              <Tag color="#818A91" key={tag}>
+              <Tag color="#818A91" key={tag} style={style.tag}>
                 <div
                   className="btn-tag"
                   onClick={() => {

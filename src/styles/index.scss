@@ -98,10 +98,15 @@ body {
   padding: 7px 0px 0px 9px;
   border-radius: 5px;
   color: var(--main-bg-color);
+  cursor: pointer;
   &:hover {
     background-color: var(--main-bg-color);
     color: var(--second-bg-color);
   }
+}
+.heart-emotion.active {
+  background-color: var(--main-bg-color);
+  color: var(--second-bg-color);
 }
 
 // main
@@ -156,6 +161,7 @@ header.nav-head {
 .tag-wrapper {
   position: relative;
   left: 100px;
+  border-radius: 50px;
 }
 
 .paginate-wrapper {

@@ -43,7 +43,7 @@ function ArticleList({ data, onPageChange, page, tag }) {
             ]}
             extra={
               <Badge style={style} count={item.favoritesCount}>
-                <div className="heart-emotion">
+                <div className={`heart-emotion ${data.favorited && "active"}`}>
                   <HeartFilled />
                 </div>
               </Badge>
