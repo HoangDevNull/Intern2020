@@ -1,4 +1,4 @@
-import { TAG } from "constant/action";
+import { TAG } from "./types";
 
 const initState = {
   isLoading: false,

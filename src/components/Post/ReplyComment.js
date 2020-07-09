@@ -3,7 +3,7 @@ import { Row, Col, Divider, Form, Button, Input } from "antd";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { comment as commentAction } from "actions";
+import { commentAction } from "redux/comment";
 
 const { TextArea } = Input;
 

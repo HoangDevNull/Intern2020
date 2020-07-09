@@ -1,10 +1,10 @@
 import { takeLatest, put, call, take, fork } from "redux-saga/effects";
-import { LOGIN, LOGOUT, USER } from "constant/action";
+import { LOGIN, LOGOUT, USER } from "./types";
 import {
   login as loginAction,
   logout as logoutAction,
   user as userAction,
-} from "actions";
+} from "./actions";
 import { login, fetchUser } from "service/api";
 import LocalStorageService from "service/localStorageService";
 

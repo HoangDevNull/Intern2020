@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import createSagaMiddleware  from "redux-saga";
-import rootReducer from "reducers";
+import createSagaMiddleware from "redux-saga";
+import rootReducer from "./rootReducer";
 
-import rootSaga from "sagas";
+import rootSaga from "./rootSaga";
 
 // setup redux store and apply redux saga. also add redux dev tool
 const configureStore = () => {

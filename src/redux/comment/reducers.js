@@ -1,4 +1,4 @@
-import { COMMENT, ADD_COMMENT, DROP_COMMENT } from "constant/action";
+import { COMMENT, ADD_COMMENT, DROP_COMMENT } from "./types";
 
 const initState = {
   isLoading: false,

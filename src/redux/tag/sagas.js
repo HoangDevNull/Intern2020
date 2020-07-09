@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import { TAG } from "constant/action";
-import { tag as tagAction } from "actions";
+import { TAG } from "./types";
+import { tag as tagAction } from "./actions";
 import { fetchTag } from "service/api";
 
 function* tagWorker() {
@@ -15,6 +15,6 @@ function* tagWorker() {
   }
 }
 
-export default function* tagSaga() {
+export default function* tagWatcher() {
   yield takeEvery(TAG.LOAD, tagWorker);
 }

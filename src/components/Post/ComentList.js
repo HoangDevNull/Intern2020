@@ -3,7 +3,7 @@ import { List, Row, Col, Divider } from "antd";
 import CommentDetail from "./CommentDetail";
 
 import { useSelector, useDispatch } from "react-redux";
-import { comment as commentAction } from "actions";
+import { commentAction } from "redux/comment";
 
 function ComentList({ slug }) {
   const username = useSelector((state) => state.login.username);

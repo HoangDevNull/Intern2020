@@ -4,17 +4,17 @@ import { LogoutOutlined } from "@ant-design/icons";
 
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, user } from "actions";
+import { logoutAction, userAction } from "redux/login";
 const Navbar = () => {
   const loginSelector = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logoutAction());
   };
 
   useEffect(() => {
     if (loginSelector.isLogin) {
-      dispatch(user.loadUser());
+      dispatch(userAction.loadUser());
     }
   }, [loginSelector.isLogin, dispatch]);
 

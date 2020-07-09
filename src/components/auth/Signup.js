@@ -3,7 +3,7 @@ import { Form, Input, Button, Alert, Result } from "antd";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { register as registerAction } from "actions";
+import { registerAction } from "redux/register";
 
 const layout = {
   labelCol: { span: 6 },

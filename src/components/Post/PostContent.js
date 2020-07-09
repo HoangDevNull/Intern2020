@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Avatar, Row, Col, Tag } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import { post as postActon } from "actions";
+import { postAction } from "redux/post";
 
 function PostContent({ slug }) {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function PostContent({ slug }) {
   });
   useEffect(() => {
     if (slug) {
-      dispatch(postActon.loadPost(slug));
+      dispatch(postAction.loadPost(slug));
     }
   }, [slug, dispatch]);
   return (

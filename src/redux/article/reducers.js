@@ -1,4 +1,4 @@
-import { ARTICLE, REMOVE_ARTICLE } from "constant/action";
+import { ARTICLE, REMOVE_ARTICLE } from "./types";
 
 let initState = {
   isLoading: false,

@@ -1,4 +1,4 @@
-import { POST } from "constant/action";
+import { POST } from "./types";
 
 const initState = {
   isLoading: false,

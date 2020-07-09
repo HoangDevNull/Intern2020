@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, USER } from "constant/action";
+import { LOGIN, LOGOUT, USER } from "./types";
 import LocalStorageService from "service/localStorageService";
 const localStorageService = LocalStorageService.getService();
 

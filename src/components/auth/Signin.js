@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Button, Alert } from "antd";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "actions";
+import { loginAction } from "redux/login";
 
 const layout = {
   labelCol: { span: 6 },
@@ -16,7 +16,7 @@ function Signin() {
   const loginSelector = useSelector((state) => state.login);
 
   const onFinish = (value) => {
-    dispatch(login.loadLogin(value));
+    dispatch(loginAction.loadLogin(value));
   };
 
   if (loginSelector.isLogin) {

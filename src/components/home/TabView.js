@@ -3,7 +3,7 @@ import { Tabs } from "antd";
 import ArticleList from "./ArticleList";
 
 import { useSelector, useDispatch } from "react-redux";
-import { article as articleAction } from "actions";
+import { articleAction } from "redux/article";
 
 const { TabPane } = Tabs;
 

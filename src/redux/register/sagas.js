@@ -1,6 +1,6 @@
 import { takeEvery, put, call } from "redux-saga/effects";
-import { REGISTER } from "constant/action";
-import { register as registerAction } from "actions";
+import { REGISTER } from "./types";
+import { register as registerAction } from "./actions";
 import { register } from "service/api";
 
 function* handleRegister(credential) {

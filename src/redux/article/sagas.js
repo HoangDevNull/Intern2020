@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { ARTICLE, REMOVE_ARTICLE } from "constant/action";
+import { ARTICLE, REMOVE_ARTICLE } from "./types";
 import { fetchAricle } from "service/api";
-import { article as articleAction } from "actions";
+import { article as articleAction } from "./actions";
 function* handleFetchArticle(action) {
   try {
     const { page, offset, tag } = action;

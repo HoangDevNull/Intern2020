@@ -1,6 +1,6 @@
 import { takeLatest, put, call, select } from "redux-saga/effects";
-import { COMMENT, ADD_COMMENT, DROP_COMMENT } from "constant/action";
-import { comment as commentAction } from "actions";
+import { COMMENT, ADD_COMMENT, DROP_COMMENT } from "./types";
+import { comment as commentAction } from "./actions";
 
 import { fetchComment, addComment, deleteComment } from "service/api";
 

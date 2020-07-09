@@ -1,6 +1,6 @@
 import { takeLatest, call, put } from "redux-saga/effects";
-import { POST } from "constant/action";
-import { post as postAction } from "actions";
+import { POST } from "./types";
+import { post as postAction } from "./actions";
 
 import { fetchPost } from "service/api";
 function* handlePost({ slug }) {

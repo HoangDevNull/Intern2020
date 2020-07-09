@@ -1,4 +1,4 @@
-import { REGISTER } from "constant/action";
+import { REGISTER } from "./types";
 
 const initState = {
   isLoading: false,

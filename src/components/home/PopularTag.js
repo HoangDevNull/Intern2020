@@ -2,7 +2,8 @@ import React, { useEffect, useMemo } from "react";
 import { Card, Tag } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 
-import { tag as tagAction, article as articleAction } from "actions";
+import { tagAction } from "redux/tag";
+import { articleAction } from "redux/article";
 
 function PopularTag() {
   // style
